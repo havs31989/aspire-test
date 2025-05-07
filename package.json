@@ -1,0 +1,35 @@
+{
+  "name": "vuejs-one-frontend-framework-struct",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "npm run lint && vite --mode development",
+    "build:dev": "npm run lint && vue-tsc -b && vite build --mode development",
+    "build:uat": "npm run lint && vue-tsc -b && vite build --mode uat",
+    "build:production": "npm run lint && vue-tsc -b && vite build --mode production",
+    "preview": "npm run lint && vite preview",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "one-frontend-framework": "^0.0.6",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "eslint": "^9.17.0",
+    "eslint-plugin-vue": "^9.32.0",
+    "globals": "^15.14.0",
+    "reflect-metadata": "^0.2.2",
+    "sass": "^1.83.0",
+    "sass-embedded": "^1.83.0",
+    "tsyringe": "^4.8.0",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.18.1",
+    "vite": "^6.0.1",
+    "vue-tsc": "^2.1.10"
+  }
+}
