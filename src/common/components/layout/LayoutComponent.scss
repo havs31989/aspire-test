@@ -1,0 +1,44 @@
+@import "../../../styles/colors.scss";
+
+.layout {
+    background-color: $whiteColor;
+
+    .left-menu {
+        max-width: 340px;
+        background-color: $darkBlueColor;
+        padding: 48px;
+
+        .logo {
+            width: 125px;
+            height: 35px;
+            background-image: url("/assets/img/Logo.svg");
+            background-size: cover;
+            background-position: left;
+        }
+
+        .slogan {
+            font-size: 15px;
+            margin-top: 19px;
+            opacity: 0.3;
+        }
+
+        .menu {
+            padding-top: 81px;
+            .menu-item {
+                margin-bottom: 62px;
+                .menu-item-logo {
+                    width: 24px;
+                    height: 24px;
+                }
+                .menu-item-title {
+                    margin-left: 16px;
+                }
+
+                &.active {
+                    font-weight: bold;
+                    color: $primaryColor;
+                }
+            }
+        }
+    }
+}

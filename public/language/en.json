@@ -1,3 +1,11 @@
 {
-  "appName": "Aspire Test"
+  "appName": "Aspire Test",
+  "layout": {
+    "slogan": "Trusted way of banking for 3,000+ SMEs and startups in Singapore",
+    "home": "Home",
+    "card": "Card",
+    "payments": "Payments",
+    "credit": "Credit",
+    "settings": "Settings"
+  }
 }

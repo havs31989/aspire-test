@@ -1,5 +1,5 @@
 import { BaseComponentState } from '../../types/baseComponentState';
-import { ExampleComponent } from './ExampleComponent.model';
+import { ExampleComponentModel } from './ExampleComponent.model';
 
 export class ExampleComponentProps {
     public name?: string;
@@ -7,7 +7,7 @@ export class ExampleComponentProps {
 }
 
 export class ExampleComponentState extends BaseComponentState {
-    public model: ExampleComponent = new ExampleComponent();
+    public model: ExampleComponentModel = new ExampleComponentModel();
 
     public async init(): Promise<void> {
         const me = this;

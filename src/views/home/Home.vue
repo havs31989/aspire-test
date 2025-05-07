@@ -2,9 +2,13 @@
 import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 import { HomeState, HomeProps } from './Home.state.ts';
+import LayoutComponent from '../../common/components/layout/LayoutComponent.vue';
 
 export default defineComponent({
   inheritAttrs: false,
+  components: {
+    LayoutComponent
+  },
   props: {
     meta: {
       type: Object as PropType<HomeProps>,
@@ -25,7 +29,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <h1>Home</h1>
+  <LayoutComponent>
+    <h1>Home</h1>
+  </LayoutComponent>
 </template>
 
 <style scoped>
