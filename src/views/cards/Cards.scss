@@ -1,20 +1,84 @@
 @use "../../styles/colors.scss";
 
 .cards {
-    .balance {
-        .balance-value {
-            .currency-block {
-                width: 40px;
-                height: 24px;
-                background-color: colors.$primaryColor;
+    .cards-header {
+        .balance {
+            .balance-value {
+                .currency-block {
+                    width: 40px;
+                    height: 24px;
+                    background-color: colors.$primaryColor;
+                    color: colors.$whiteColor;
+                }
+            }
+        }
+        .new-card {
+            button {
+                background-color: colors.$blueColor;
                 color: colors.$whiteColor;
             }
         }
     }
-    .new-card {
-        button {
-            background-color: colors.$blueColor;
-            color: colors.$whiteColor;
+    .cards-content {
+        .cards-tab {
+            font-family: "Avenir Next", "Open Sans", sans-serif;
+            font-size: 14px;
+            color: colors.$darkColor;
+            opacity: 0.3;
+            height: 19px;
+            line-height: 19px;
+            margin-right: 32px;
+
+            &::before {
+                left: 0;
+                width: 100%;
+                border-radius: 6px;
+                border-top: 2px;
+                height: 2px;
+                bottom: -4.5px;
+            }
+            &:checked {
+                font-weight: 600;
+                opacity: 1;
+                &::before {
+                    background-color: #23cefd;
+                }
+            }
+        }
+
+        .cards-tab-content {
+            margin-top: 20.5px;
+            padding: 31.5px 40px;
+
+            .header-card-list {
+                .showcard-button {
+                    height: 17px;
+                    line-height: 17px;
+                    .showcard-text {
+                        color: colors.$primaryColor;
+                    }
+                }
+            }
+            .content-card-list {
+                .splide__slide {
+                    background-color: colors.$primaryColor;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 8px;
+                    .card-detail {
+                        .aspire-logo {
+                            width: 83.52px;
+                            height: 23.7px;
+                            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(868%) hue-rotate(19deg)
+                                brightness(110%) contrast(101%);
+                        }
+                        .card-logo {
+                            width: 66.59px;
+                            height: 22.57px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

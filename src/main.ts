@@ -10,6 +10,6 @@ import { LanguageCode } from 'one-frontend-framework';
 const languageService = container.resolve(LanguageService);
 await languageService.initLanguage(LanguageCode.EN);
 
-const app = createApp(App)
+const app = createApp(App);
 app.use(router);
 app.mount('#app');

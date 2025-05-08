@@ -1,6 +1,10 @@
+import { MyCardItem } from '../../services/response/cardsResponse';
+
 export class CardsModel {
     public currency: string = 'S$';
     public balance: number = 3000;
+
+    public myCards: CardViewModel[] = [];
 }
 
 export class CardViewModel {
@@ -26,6 +30,17 @@ export class CardViewModel {
         } else {
             return "Unknown";
         }
+    }
+
+    /**
+     * Map response
+     * @param response 
+     */
+    public mapResponse(response: MyCardItem): void {
+        this.name = response.name;
+        this.expMonth = response.expMonth;
+        this.expYear = response.expYear;
+        this.number = response.number;
     }
 }
 

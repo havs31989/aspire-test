@@ -1,5 +1,45 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@import '@splidejs/splide/css';
+
+.cards .splide__arrow {
+    display: none !important;
+}
+
+.cards .splide__pagination {
+    height: 8px;
+    position: relative;
+    margin-top: 16.15px;
+}
+
+.cards .splide__pagination li {
+    line-height: 8px;
+}
+
+.cards .splide__pagination__page {
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: #01D167;
+    opacity: 0.2;
+}
+
+.cards .splide__pagination__page.is-active {
+    transform: scale(1);
+    width: 16px;
+    opacity: 1;
+}
+
+@font-face {
+    font-family: "Avenir Next";
+    src:
+        local("Avenir Next"),
+        url("/assets/fonts/AvenirNextCyr-Regular.ttf") format("truetype"),
+        url("/assets/fonts/AvenirNextCyr-Regular.woff") format("woff"),
+        url("/assets/fonts/AvenirNextCyr-Regular.woff2") format("woff");
+}
 
 html,
 body {
