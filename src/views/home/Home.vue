@@ -3,11 +3,12 @@ import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
 import { HomeState, HomeProps } from './Home.state.ts';
 import LayoutComponent from '../../common/components/layout/LayoutComponent.vue';
+import { appRouteNames } from '../../appRouter.ts';
 
 export default defineComponent({
   inheritAttrs: false,
   components: {
-    LayoutComponent
+    Layout: LayoutComponent
   },
   props: {
     meta: {
@@ -17,7 +18,8 @@ export default defineComponent({
   },
   data() {
     return {
-      state: new HomeState()
+      state: new HomeState(),
+      routeNames: appRouteNames
     };
   },
   async mounted() {
@@ -29,9 +31,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <LayoutComponent>
+  <Layout :meta="{ pageRouteName: routeNames.Home }">
     <h1>Home</h1>
-  </LayoutComponent>
+  </Layout>
 </template>
 
 <style scoped>

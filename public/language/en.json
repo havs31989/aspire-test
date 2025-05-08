@@ -1,11 +1,31 @@
 {
   "appName": "Aspire Test",
+  "label": {
+    "save": "Save",
+    "cancel": "Cancel"
+  },
   "layout": {
     "slogan": "Trusted way of banking for 3,000+ SMEs and startups in Singapore",
     "home": "Home",
-    "card": "Card",
+    "card": "Cards",
     "payments": "Payments",
     "credit": "Credit",
     "settings": "Settings"
+  },
+  "cards": {
+    "availableBalance": "Available balance",
+    "myDebitCards": "My debit cards",
+    "allCompanyCards": "All company cards",
+    "newCard": "New card",
+    "showCardNumber": "Show card number",
+    "cardDetails": "Card details",
+    "recentTransactions": "Recent transactions",
+    "freezeCard": "Freeze card",
+    "setSpendLimit": "Set spend limit",
+    "addToGPay": "Add to GPay",
+    "replaceCard": "Replace card",
+    "cancelCard": "Cancel card",
+    "chargedToDebitCard": "Charged to debit card",
+    "viewAllCardTransactions": "View all card transactions"
   }
 }

@@ -1,0 +1,20 @@
+@use "../../styles/colors.scss";
+
+.cards {
+    .balance {
+        .balance-value {
+            .currency-block {
+                width: 40px;
+                height: 24px;
+                background-color: colors.$primaryColor;
+                color: colors.$whiteColor;
+            }
+        }
+    }
+    .new-card {
+        button {
+            background-color: colors.$blueColor;
+            color: colors.$whiteColor;
+        }
+    }
+}

@@ -3,6 +3,7 @@ import { LayoutComponentModel } from './LayoutComponent.model';
 
 export class LayoutComponentProps {
     public pageName?: string;
+    public pageRouteName?: string;
 }
 
 export class LayoutComponentState extends BaseComponentState {
