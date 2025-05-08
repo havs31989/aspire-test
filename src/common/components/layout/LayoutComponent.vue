@@ -36,7 +36,7 @@ export default defineComponent({
         </div>
         <div class="menu flex-1 w-full">
           <RouterLink class="menu-item flex justify-start items-center"
-            :class="{ 'active': $props.meta?.pageRouteName == routeNames.Home }" :to="{ name: routeNames.Home }" :replace=true>
+            :class="{ 'active': $props.meta?.pageRouteName == routeNames.Home }" :to="{ name: routeNames.Home }">
             <img class="menu-item-icon" src="/assets/img/Home.svg" alt="menu-item-icon">
             <span class="menu-item-title">{{ state.lanuage.text.layout.home }}</span>
           </RouterLink>

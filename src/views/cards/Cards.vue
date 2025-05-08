@@ -32,7 +32,7 @@ export default defineComponent({
 
 <template>
   <LayoutComponent :meta="{ pageRouteName: routeNames.Cards }">
-    <div class="cards flex">
+    <div class="cards flex flex-col">
       <div class="header flex w-full justify-between items-end">
         <div class="balance">
           <div class="text-sm pb-[18px]">{{ state.lanuage.text.cards.availableBalance }}</div>
@@ -49,6 +49,17 @@ export default defineComponent({
             <img class="size-4" src="/public/assets/img/box.svg" alt="add-new-icon" />
             <span class="text-[13px]">{{ state.lanuage.text.cards.newCard }}</span>
           </button>
+        </div>
+      </div>
+      <div class="cards-content">
+        <div class="tabs tabs-border">
+          <input type="radio" name="cards_tab" class="tab" :aria-label="state.lanuage.text.cards.myDebitCards"
+            checked />
+          <div class="tab-content">Tab content 1</div>
+
+          <input type="radio" name="cards_tab" class="tab"
+            :aria-label="state.lanuage.text.cards.allCompanyCards" />
+          <div class="tab-content">Tab content 2</div>
         </div>
       </div>
     </div>
