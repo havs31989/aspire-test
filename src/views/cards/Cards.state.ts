@@ -9,7 +9,7 @@ import { GetMyCardsRequest } from '../../services/request/cardsRequest';
 import { ObjectHelper } from '../../common/utils/objectHelper';
 import { SystemError } from '../../common/services/baseService';
 import { AnyType } from 'one-frontend-framework';
-import Splide from '@splidejs/splide';
+import Splide, { SlideComponent } from '@splidejs/splide';
 
 export class CardsProps {
 }
@@ -19,14 +19,22 @@ export class CardsState extends BaseComponentState {
     private readonly cardsService = container.resolve(CardsService);
 
     public model: CardsModel = new CardsModel();
+    public myActiveCard?: CardViewModel;
     public myCardsSplide: AnyType;
 
     public async init(): Promise<void> {
         const me = this;
         await me.getMyCards();
-        const myCardsSplide = new Splide('.splide');
-        myCardsSplide.mount();
         me.isReady = true;
+        const intervalRender = setInterval(() => {
+            const myCardSplideEl = document.getElementById('myCardSplide');
+            if (myCardSplideEl) {
+                clearInterval(intervalRender);
+                const myCardsSplide = new Splide('.splide');
+                myCardsSplide.on('active', (Slide) => { this.onMyActiveCard(Slide); })
+                myCardsSplide.mount();
+            }
+        }, 100);
     }
 
     public async onMounted(): Promise<void> {
@@ -51,6 +59,34 @@ export class CardsState extends BaseComponentState {
                 const myCard = new CardViewModel();
                 myCard.mapResponse(item);
                 me.model.myCards.push(myCard);
+            }
+        }
+    }
+
+    public onMyActiveCard(slide: SlideComponent): void {
+        const me = this;
+        const cardnumber = slide.slide.dataset.cardnumber;
+        const cardViewData = me.model.myCards.find(a => a.number == cardnumber);
+        if (cardViewData) {
+            me.myActiveCard = cardViewData;
+        }
+    }
+
+    public async setFreezeCurrentCard(): Promise<void> {
+        const me = this;
+        if (me.myActiveCard) {
+            me.myActiveCard.isFreeze = !me.myActiveCard.isFreeze;
+            const cardViewData = me.model.myCards.find(a => a.number == me.myActiveCard?.number);
+            if (cardViewData) {
+                cardViewData.isFreeze =  me.myActiveCard.isFreeze;
+            }
+            const myCards = await me.storageSerivce.getObject<MyCardItem[]>(StorageKey.myCards);
+            if (myCards) {
+                const cardInStore = myCards.find(a => a.number == me.myActiveCard?.number);
+                if (cardInStore) {
+                    cardInStore.isFreeze =  me.myActiveCard.isFreeze;
+                    await me.storageSerivce.saveObject<MyCardItem[]>(StorageKey.myCards, myCards);
+                }
             }
         }
     }

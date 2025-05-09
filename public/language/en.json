@@ -27,6 +27,7 @@
     "replaceCard": "Replace card",
     "cancelCard": "Cancel card",
     "chargedToDebitCard": "Charged to debit card",
+    "refundOnDebitCard": "Refund on debit card",
     "viewAllCardTransactions": "View all card transactions"
   }
 }

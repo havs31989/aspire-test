@@ -14,11 +14,13 @@ export interface Cards {
   cardDetails: string;
   recentTransactions: string;
   freezeCard: string;
+  unFreezeCard: string;
   setSpendLimit: string;
   addToGPay: string;
   replaceCard: string;
   cancelCard: string;
   chargedToDebitCard: string;
+  refundOnDebitCard: string;
   viewAllCardTransactions: string;
 }
 
