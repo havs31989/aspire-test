@@ -28,6 +28,9 @@
     "cancelCard": "Cancel card",
     "chargedToDebitCard": "Charged to debit card",
     "refundOnDebitCard": "Refund on debit card",
-    "viewAllCardTransactions": "View all card transactions"
+    "viewAllCardTransactions": "View all card transactions",
+    "enterCardName": "Please enter card name",
+    "cardNameRequired": "Card name is required!",
+    "cardNameWrongData": "Card name is wrong data!"
   }
 }

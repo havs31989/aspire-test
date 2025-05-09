@@ -22,6 +22,9 @@ export interface Cards {
   chargedToDebitCard: string;
   refundOnDebitCard: string;
   viewAllCardTransactions: string;
+  enterCardName: string;
+  cardNameRequired: string;
+  cardNameWrongData: string;
 }
 
 export interface Label {

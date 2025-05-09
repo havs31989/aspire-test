@@ -46,7 +46,10 @@ export default defineComponent({
             </div>
           </div>
           <div class="new-card">
-            <button class="btn btn-sm btn-ghost hover:bg-transparent hover:border-transparent hover:shadow-none">
+            <button
+              onclick="addNewCardModal.showModal()"
+              class="btn btn-sm btn-ghost hover:bg-transparent hover:border-transparent hover:shadow-none"
+            >
               <img class="size-4" src="/public/assets/img/box.svg" alt="add-new-icon" />
               <span class="text-[13px]">{{ state.lanuage.text.cards.newCard }}</span>
             </button>
@@ -54,14 +57,17 @@ export default defineComponent({
         </div>
         <div class="cards-content mt-[34px]">
           <div class="tabs tabs-border">
-            <input type="radio" name="cards_tab" class="cards-tab tab p-0"
-              :aria-label="state.lanuage.text.cards.myDebitCards" checked />
+            <input
+              type="radio" name="cards_tab" class="cards-tab tab p-0"
+              :aria-label="state.lanuage.text.cards.myDebitCards" checked
+            />
             <div class="my-cards tab-content cards-tab-content border shadow rounded-lg">
               <div class="flex">
                 <div class="left-panel w-[414px] flex flex-col">
                   <div class="header-card-list w-full flex justify-end items-center">
                     <button
-                      class="btn btn-ghost p-0 showcard-button hover:bg-transparent hover:border-transparent hover:shadow-none">
+                      class="btn btn-ghost p-0 showcard-button hover:bg-transparent hover:border-transparent hover:shadow-none"
+                    >
                       <img class="w-[16px] h-[16px]" src="/assets/img/remove_red_eye-24px.svg" alt="show-card" />
                       <span class="text-[12px] font-bold showcard-text">
                         {{ state.lanuage.text.cards.showCardNumber }}
@@ -73,8 +79,10 @@ export default defineComponent({
                       <div class="splide__track w-full h-[248.85px]">
                         <ul class="splide__list">
                           <template v-for="item in state.model.myCards" :key="item.number">
-                            <li :class="{ 'opacity-30': item.isFreeze }" class="splide__slide"
-                              :data-cardnumber="item.number">
+                            <li
+                              :class="{ 'opacity-30': item.isFreeze }" class="splide__slide"
+                              :data-cardnumber="item.number"
+                            >
                               <div class="card-detail w-full h-full p-[27.09px] flex flex-col justify-between">
                                 <div class="card-detail-header w-full flex justify-end">
                                   <img class="aspire-logo" src="/assets/img/Logo.svg" alt="aspire-logo" />
@@ -127,7 +135,8 @@ export default defineComponent({
                     <div v-if="state.myActiveCard" class="card-action rounded-2xl flex justify-between mt-8">
                       <button
                         class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
-                        @click="state.setFreezeCurrentCard()">
+                        @click="state.setFreezeCurrentCard()"
+                      >
                         <img class="btn-icon w-[32px] h-[32px]" src="/assets/img/Freeze card.svg" alt="btn-icon">
                         <span v-if="!state.myActiveCard.isFreeze" class="btn-text text-[13px] font-normal">
                           {{ state.lanuage.text.cards.freezeCard }}
@@ -137,28 +146,32 @@ export default defineComponent({
                         </span>
                       </button>
                       <button
-                        class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none">
+                        class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
+                      >
                         <img class="btn-icon w-[32px] h-[32px]" src="/assets/img/Set spend limit.svg" alt="btn-icon">
                         <span class="btn-text text-[13px] font-normal">
                           {{ state.lanuage.text.cards.setSpendLimit }}
                         </span>
                       </button>
                       <button
-                        class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none">
+                        class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
+                      >
                         <img class="btn-icon w-[32px] h-[32px]" src="/assets/img/GPay.svg" alt="btn-icon">
                         <span class="btn-text text-[13px] font-normal">
                           {{ state.lanuage.text.cards.addToGPay }}
                         </span>
                       </button>
                       <button
-                        class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none">
+                        class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
+                      >
                         <img class="btn-icon w-[32px] h-[32px]" src="/assets/img/Replace card.svg" alt="btn-icon">
                         <span class="btn-text text-[13px] font-normal">
                           {{ state.lanuage.text.cards.replaceCard }}
                         </span>
                       </button>
                       <button
-                        class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none">
+                        class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
+                      >
                         <img class="btn-icon w-[32px] h-[32px]" src="/assets/img/Deactivate card.svg" alt="btn-icon">
                         <span class="btn-text text-[13px] font-normal">
                           {{ state.lanuage.text.cards.cancelCard }}
@@ -177,8 +190,10 @@ export default defineComponent({
                       </div>
                       <div class="collapse-title-icon">
                         <img class="open-icon title-icon" src="/assets/img/down-arrow.svg" alt="collapse-open-icon" />
-                        <img class="close-icon title-icon" src="/assets/img/down-arrow-1.svg"
-                          alt="collapse-close-icon" />
+                        <img
+                          class="close-icon title-icon" src="/assets/img/down-arrow-1.svg"
+                          alt="collapse-close-icon"
+                        />
                       </div>
                     </div>
                     <div class="collapse-content p-0 !pb-0 bg-white">
@@ -196,19 +211,24 @@ export default defineComponent({
                       </div>
                       <div class="collapse-title-icon">
                         <img class="open-icon title-icon" src="/assets/img/down-arrow.svg" alt="collapse-open-icon" />
-                        <img class="close-icon title-icon" src="/assets/img/down-arrow-1.svg"
-                          alt="collapse-close-icon" />
+                        <img
+                          class="close-icon title-icon" src="/assets/img/down-arrow-1.svg"
+                          alt="collapse-close-icon"
+                        />
                       </div>
                     </div>
                     <div class="collapse-content p-0 !pb-0 bg-white">
                       <div class="transaction-content">
                         <div class="transaction-detail-list p-6">
-                          <div v-for="(item, index) in state.myActiveCard.transactions" :key="item.id"
-                            class="transaction-detail-item flex flex-col">
+                          <div
+                            v-for="(item, index) in state.myActiveCard.transactions" :key="item.id"
+                            class="transaction-detail-item flex flex-col"
+                          >
                             <div class="transaction-detail-item-info flex flex-row justify-between items-center">
                               <div class="flex-1 flex justify-between items-center">
                                 <div
-                                  class="w-[48px] h-[48px] bg-[#009DFF1A] rounded-3xl flex justify-center items-center">
+                                  class="w-[48px] h-[48px] bg-[#009DFF1A] rounded-3xl flex justify-center items-center"
+                                >
                                   <img class="w-[16px]" :src="item.getIcon()" alt="transction-icon" />
                                 </div>
                                 <div class="flex-1 flex flex-col ms-3">
@@ -230,17 +250,22 @@ export default defineComponent({
                                 </div>
                               </div>
                               <button
-                                class="btn btn-ghost h-full p-0 ms-[10.3px] showcard-button hover:bg-transparent hover:border-transparent hover:shadow-none">
+                                class="btn btn-ghost h-full p-0 ms-[10.3px] showcard-button hover:bg-transparent hover:border-transparent hover:shadow-none"
+                              >
                                 <img class="w-[6.5px] h-[12px]" src="/assets/img/next.svg" alt="next" />
                               </button>
                             </div>
                             <div class="transaction-detail-item-option flex justify-center mt-3">
                               <button
-                                class="btn btn-ghost h-auto p-0 showcard-button hover:bg-transparent hover:border-transparent hover:shadow-none">
+                                class="btn btn-ghost h-auto p-0 showcard-button hover:bg-transparent hover:border-transparent hover:shadow-none"
+                              >
                                 <span
-                                  class="w-[24px] h-[20px] bg-[#325BAF] rounded-lg flex justify-center items-center">
-                                  <img class="w-[10px] h-[7.68px]" src="/assets/img/business-and-finance.svg"
-                                    alt="card-icon" />
+                                  class="w-[24px] h-[20px] bg-[#325BAF] rounded-lg flex justify-center items-center"
+                                >
+                                  <img
+                                    class="w-[10px] h-[7.68px]" src="/assets/img/business-and-finance.svg"
+                                    alt="card-icon"
+                                  />
                                 </span>
                                 <span v-if="item.debit" class="text-[12px] font-semibold text-[#325BAF] ms-2">
                                   {{ state.lanuage.text.cards.refundOnDebitCard }}
@@ -250,15 +275,20 @@ export default defineComponent({
                                 </span>
                               </button>
                             </div>
-                            <div v-if="index != state.myActiveCard.transactions.length - 1"
-                              class="line border-b border-[#F5F5F5] my-4">
+                            <div
+                              v-if="index != state.myActiveCard.transactions.length - 1"
+                              class="line border-b border-[#F5F5F5] my-4"
+                            >
                             </div>
                           </div>
                         </div>
-                        <div v-if="state.myActiveCard.transactions.length > 0"
-                          class="transaction-view-all bg-[#EDFFF5] border-[#DDFFEC] py-4 text-center leading-[18px]">
+                        <div
+                          v-if="state.myActiveCard.transactions.length > 0"
+                          class="transaction-view-all bg-[#EDFFF5] border-[#DDFFEC] py-4 text-center leading-[18px]"
+                        >
                           <button
-                            class="btn btn-ghost p-0 showcard-button h-auto hover:bg-transparent hover:border-transparent hover:shadow-none">
+                            class="btn btn-ghost p-0 showcard-button h-auto hover:bg-transparent hover:border-transparent hover:shadow-none"
+                          >
                             <span class="text-[13px] font-semibold text-[#01D167]">
                               {{ state.lanuage.text.cards.viewAllCardTransactions }}
                             </span>
@@ -270,14 +300,37 @@ export default defineComponent({
                 </div>
               </div>
             </div>
-            <input type="radio" name="cards_tab" class="cards-tab tab p-0"
-              :aria-label="state.lanuage.text.cards.allCompanyCards" />
+            <input
+              type="radio" name="cards_tab" class="cards-tab tab p-0"
+              :aria-label="state.lanuage.text.cards.allCompanyCards"
+            />
             <div class="all-cards tab-content cards-tab-content border shadow rounded-lg">
               {{ state.lanuage.text.cards.allCompanyCards }}
             </div>
           </div>
         </div>
       </div>
+      <dialog id="addNewCardModal" class="modal">
+        <div class="modal-box bg-white">
+          <h3 class="text-lg font-bold">{{ state.lanuage.text.cards.newCard }}</h3>
+          <p class="py-4">{{ state.lanuage.text.cards.enterCardName }}</p>
+          <input
+            v-model="state.createModel.name" type="text" placeholder="" class="input input-neutral bg-white w-full"
+            maxlength="50"
+          />
+          <p v-if="state.createModel.checkError('name')" class="label text-sm text-error">
+            {{ state.createModel.getError('name') }}
+          </p>
+          <div class="modal-action">
+            <button class="btn btn-success min-w-20" @click="state.addNewCard()">
+              {{ state.lanuage.text.label.save }}
+            </button>
+            <form method="dialog">
+              <button class="btn min-w-20">{{ state.lanuage.text.label.cancel }}</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </LayoutComponent>
   </template>
   <template v-if="!state.isReady">

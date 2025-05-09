@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 import { BaseComponentState } from '../../common/types/baseComponentState';
-import { CardsModel, CardViewModel } from './Cards.model';
+import { CardCreateModel, CardsModel, CardViewModel } from './Cards.model';
 import { StorageService } from '../../common/services/storageService';
 import { CardsService } from '../../services/cardsService';
 import { MyCardItem } from '../../services/response/cardsResponse';
@@ -21,6 +21,7 @@ export class CardsState extends BaseComponentState {
     public model: CardsModel = new CardsModel();
     public myActiveCard?: CardViewModel;
     public myCardsSplide: AnyType;
+    public createModel: CardCreateModel = new CardCreateModel();
 
     public async init(): Promise<void> {
         const me = this;
@@ -78,15 +79,34 @@ export class CardsState extends BaseComponentState {
             me.myActiveCard.isFreeze = !me.myActiveCard.isFreeze;
             const cardViewData = me.model.myCards.find(a => a.number == me.myActiveCard?.number);
             if (cardViewData) {
-                cardViewData.isFreeze =  me.myActiveCard.isFreeze;
+                cardViewData.isFreeze = me.myActiveCard.isFreeze;
             }
             const myCards = await me.storageSerivce.getObject<MyCardItem[]>(StorageKey.myCards);
             if (myCards) {
                 const cardInStore = myCards.find(a => a.number == me.myActiveCard?.number);
                 if (cardInStore) {
-                    cardInStore.isFreeze =  me.myActiveCard.isFreeze;
+                    cardInStore.isFreeze = me.myActiveCard.isFreeze;
                     await me.storageSerivce.saveObject<MyCardItem[]>(StorageKey.myCards, myCards);
                 }
+            }
+        }
+    }
+
+    public async addNewCard(): Promise<void> {
+        const me = this;
+        if (me.createModel.isValid()) {
+            const myCards = await me.storageSerivce.getObject<MyCardItem[]>(StorageKey.myCards);
+            if (myCards) {
+                const newCard = {
+                    name: me.createModel.name,
+                    number: me.createModel.generateCardNumber(),
+                    expMonth: Number.parseInt(me.createModel.generateMonth()),
+                    expYear: me.createModel.generateFutureYear(),
+                    isFreeze: false
+                } as MyCardItem;
+                myCards.push(newCard);
+                await me.storageSerivce.saveObject<MyCardItem[]>(StorageKey.myCards, myCards);
+                window.location.reload();
             }
         }
     }

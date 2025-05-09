@@ -1,4 +1,8 @@
+import { container } from 'tsyringe';
+import { BaseModel, ErrorModel } from '../../common/types/baseModel';
 import { MyCardItem } from '../../services/response/cardsResponse';
+import validator from 'validator';
+import { LanguageService } from '../../common/services/languageService';
 
 export class CardsModel {
     public currency: string = 'S$';
@@ -59,7 +63,6 @@ export class CardViewModel {
         }
     }
 }
-
 export class CardViewTransactionModel {
     public id: string = '';
     public title: string = '';
@@ -84,5 +87,69 @@ export class CardViewTransactionModel {
             default:
                 return defaultIcon;
         }
+    }
+}
+
+export class CardCreateModel extends BaseModel {
+    private readonly language = container.resolve(LanguageService);
+    public name: string = '';
+
+    public isValid(): boolean {
+        const me = this;
+        me.errors = [];
+        if (validator.isEmpty(me.name)) {
+            me.errors.push({
+                property: 'name',
+                error: this.language.text.cards.cardNameRequired
+            } as ErrorModel);
+        }
+        else if (me.name.length > 50) {
+            me.errors.push({
+                property: 'name',
+                error: this.language.text.cards.cardNameWrongData
+            } as ErrorModel);
+        }
+        if (me.errors.length == 0) return true;
+        return false;
+    }
+
+    public generateCardNumber(): string {
+        const card: number[] = [];
+        // Start with a Visa prefix "4"
+        card.push(4);
+        // Generate next 14 random digits (total 15 so far)
+        for (let i = 0; i < 14; i++) {
+            card.push(Math.floor(Math.random() * 10));
+        }
+        // Calculate the Luhn check digit
+        const checkDigit = this.getCheckDigit(card);
+        card.push(checkDigit);
+        return card.join('');
+    }
+    
+    private getCheckDigit(digits: number[]): number {
+        let sum = 0;
+        let shouldDouble = true;
+        // Process digits from right to left
+        for (let i = digits.length - 1; i >= 0; i--) {
+            let digit = digits[i];
+            if (shouldDouble) {
+                digit *= 2;
+                if (digit > 9) digit -= 9;
+            }
+            sum += digit;
+            shouldDouble = !shouldDouble;
+        }
+        return (10 - (sum % 10)) % 10;
+    }
+
+    public generateMonth(): string {
+        const month = Math.floor(Math.random() * 12) + 1; // 1 to 12
+        return month.toString().padStart(2, '0');
+    }
+
+    public generateFutureYear(range: number = 5): number {
+        const currentYear = new Date().getFullYear();
+        return currentYear + Math.floor(Math.random() * range) + 1;
     }
 }
