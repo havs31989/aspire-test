@@ -50,59 +50,96 @@
             margin-top: 20.5px;
             padding: 31.5px 40px;
 
-            .header-card-list {
-                .showcard-button {
-                    height: 17px;
-                    line-height: 17px;
-                    .showcard-text {
-                        color: colors.$primaryColor;
-                    }
-                }
-            }
-
-            .content-card-list {
-                .splide__slide {
-                    background-color: colors.$primaryColor;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 8px;
-                    .card-detail {
-                        .aspire-logo {
-                            width: 83.52px;
-                            height: 23.7px;
-                            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(868%) hue-rotate(19deg)
-                                brightness(110%) contrast(101%);
-                        }
-                        .card-logo {
-                            width: 66.59px;
-                            height: 22.57px;
+            &.my-cards {
+                .left-panel {
+                    .header-card-list {
+                        .showcard-button {
+                            height: 17px;
+                            line-height: 17px;
+                            .showcard-text {
+                                color: colors.$primaryColor;
+                            }
                         }
                     }
-                }
-            }
 
-            .card-number {
-                .dot {
-                    background-color: colors.$whiteColor;
-                }
-            }
-
-            .card-action {
-                padding: 20px 27px 21px 27px;
-                background-color: #edf3ff;
-
-                .btn {
-                    padding: 0px;
-                    max-width: 60px;
-                    color: colors.$darkBlueColor;
-                    box-sizing: content-box;
-
-                    .btn-icon {
-                        max-width: 32px;
+                    .content-card-list {
+                        .splide__slide {
+                            background-color: colors.$primaryColor;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 8px;
+                            .card-detail {
+                                .aspire-logo {
+                                    width: 83.52px;
+                                    height: 23.7px;
+                                    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(868%)
+                                        hue-rotate(19deg) brightness(110%) contrast(101%);
+                                }
+                                .card-logo {
+                                    width: 66.59px;
+                                    height: 22.57px;
+                                }
+                            }
+                        }
                     }
 
-                    .btn-text {
-                        box-sizing: content-box;
+                    .card-number {
+                        .dot {
+                            background-color: colors.$whiteColor;
+                        }
+                    }
+
+                    .card-action {
+                        padding: 20px 27px 21px 27px;
+                        background-color: #edf3ff;
+
+                        .btn {
+                            padding: 0px;
+                            max-width: 60px;
+                            color: colors.$darkBlueColor;
+                            box-sizing: content-box;
+
+                            .btn-icon {
+                                max-width: 32px;
+                            }
+
+                            .btn-text {
+                                box-sizing: content-box;
+                            }
+                        }
+                    }
+                }
+
+                .right-panel {
+                    .collapse {
+                        background-color: #f5f9ff;
+                        border: 1px solid #f5f5f5;
+
+                        .collapse-title {
+                            color: colors.$darkBlueColor;
+                            .collapse-title-icon {
+                                .title-icon {
+                                    display: none;
+                                    &.open-icon {
+                                        display: flex;
+                                    }
+                                }
+                            }
+                        }
+
+                        &:is([open], :focus:not(.collapse-close)),
+                        &:not(.collapse-close):has(> input:is([type="checkbox"], [type="radio"]):checked) {
+                            .collapse-title {
+                                .collapse-title-icon {
+                                    .title-icon {
+                                        display: none;
+                                        &.close-icon {
+                                            display: flex;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -21,6 +21,7 @@
     "cardDetails": "Card details",
     "recentTransactions": "Recent transactions",
     "freezeCard": "Freeze card",
+    "unFreezeCard": "Unfreeze card",
     "setSpendLimit": "Set spend limit",
     "addToGPay": "Add to GPay",
     "replaceCard": "Replace card",

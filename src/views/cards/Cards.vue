@@ -53,17 +53,14 @@ export default defineComponent({
       </div>
       <div class="cards-content mt-[34px]">
         <div class="tabs tabs-border">
-          <input
-            type="radio" name="cards_tab" class="cards-tab tab p-0"
-            :aria-label="state.lanuage.text.cards.myDebitCards" checked
-          />
-          <div class="tab-content cards-tab-content border shadow rounded-lg">
+          <input type="radio" name="cards_tab" class="cards-tab tab p-0"
+            :aria-label="state.lanuage.text.cards.myDebitCards" checked />
+          <div class="my-cards tab-content cards-tab-content border shadow rounded-lg">
             <div class="flex">
               <div class="left-panel w-[414px] flex flex-col">
                 <div class="header-card-list w-full flex justify-end items-center">
                   <button
-                    class="btn btn-ghost p-0 showcard-button hover:bg-transparent hover:border-transparent hover:shadow-none"
-                  >
+                    class="btn btn-ghost p-0 showcard-button hover:bg-transparent hover:border-transparent hover:shadow-none">
                     <img class="w-[16px] h-[16px]" src="/assets/img/remove_red_eye-24px.svg" alt="show-card" />
                     <span class="text-[12px] font-bold showcard-text">
                       {{ state.lanuage.text.cards.showCardNumber }}
@@ -125,40 +122,35 @@ export default defineComponent({
                   </section>
                   <div class="card-action rounded-2xl flex justify-between mt-8">
                     <button
-                      class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
-                    >
+                      class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none">
                       <img class="btn-icon w-[32px] h-[32px]" src="/assets/img/Freeze card.svg" alt="btn-icon">
                       <span class="btn-text text-[13px] font-normal">
                         {{ state.lanuage.text.cards.freezeCard }}
                       </span>
                     </button>
                     <button
-                      class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
-                    >
+                      class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none">
                       <img class="btn-icon w-[32px] h-[32px]" src="/assets/img/Set spend limit.svg" alt="btn-icon">
                       <span class="btn-text text-[13px] font-normal">
                         {{ state.lanuage.text.cards.setSpendLimit }}
                       </span>
                     </button>
                     <button
-                      class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
-                    >
+                      class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none">
                       <img class="btn-icon w-[32px] h-[32px]" src="/assets/img/GPay.svg" alt="btn-icon">
                       <span class="btn-text text-[13px] font-normal">
                         {{ state.lanuage.text.cards.addToGPay }}
                       </span>
                     </button>
                     <button
-                      class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
-                    >
+                      class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none">
                       <img class="btn-icon w-[32px] h-[32px]" src="/assets/img/Replace card.svg" alt="btn-icon">
                       <span class="btn-text text-[13px] font-normal">
                         {{ state.lanuage.text.cards.replaceCard }}
                       </span>
                     </button>
                     <button
-                      class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
-                    >
+                      class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none">
                       <img class="btn-icon w-[32px] h-[32px]" src="/assets/img/Deactivate card.svg" alt="btn-icon">
                       <span class="btn-text text-[13px] font-normal">
                         {{ state.lanuage.text.cards.cancelCard }}
@@ -168,15 +160,48 @@ export default defineComponent({
                 </div>
               </div>
               <div class="right-panel flex-1 ms-[46px]">
-                dsa
+                <div class="card-details-collapse collapse rounded-lg">
+                  <input type="checkbox" />
+                  <div class="collapse-title p-6 flex justify-between items-center">
+                    <div class="title-with-icon flex items-center">
+                      <img class="w-[24px] h-[24px]" src="/assets/img/Group 11889.svg" alt="card-detail-icon" />
+                      <span class="ms-3 text-[14px]"> {{ state.lanuage.text.cards.cardDetails }}</span>
+                    </div>
+                    <div class="collapse-title-icon">
+                      <img class="open-icon title-icon" src="/assets/img/down-arrow.svg" alt="collapse-open-icon" />
+                      <img class="close-icon title-icon" src="/assets/img/down-arrow-1.svg" alt="collapse-close-icon" />
+                    </div>
+                  </div>
+                  <div class="collapse-content p-0 !pb-0 bg-white">
+                    <div class="transaction-content p-6">
+                      {{ state.lanuage.text.cards.cardDetails }}
+                    </div>
+                  </div>
+                </div>
+                <div class="transaction-collapse collapse rounded-lg mt-6">
+                  <input type="checkbox" />
+                  <div class="collapse-title p-6 flex justify-between items-center">
+                    <div class="title-with-icon flex items-center">
+                      <img class="w-[24px] h-[24px]" src="/assets/img/Group 11889-1.svg" alt="card-detail-icon" />
+                      <span class="ms-3 text-[14px]"> {{ state.lanuage.text.cards.recentTransactions }}</span>
+                    </div>
+                    <div class="collapse-title-icon">
+                      <img class="open-icon title-icon" src="/assets/img/down-arrow.svg" alt="collapse-open-icon" />
+                      <img class="close-icon title-icon" src="/assets/img/down-arrow-1.svg" alt="collapse-close-icon" />
+                    </div>
+                  </div>
+                  <div class="collapse-content p-0 !pb-0 bg-white">
+                    <div class="transaction-content p-6">
+                      {{ state.lanuage.text.cards.recentTransactions }}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <input
-            type="radio" name="cards_tab" class="cards-tab tab p-0"
-            :aria-label="state.lanuage.text.cards.allCompanyCards"
-          />
-          <div class="tab-content cards-tab-content border shadow rounded-lg">
+          <input type="radio" name="cards_tab" class="cards-tab tab p-0"
+            :aria-label="state.lanuage.text.cards.allCompanyCards" />
+          <div class="all-cards tab-content cards-tab-content border shadow rounded-lg">
             {{ state.lanuage.text.cards.allCompanyCards }}
           </div>
         </div>
