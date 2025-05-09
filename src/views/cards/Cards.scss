@@ -59,6 +59,7 @@
                     }
                 }
             }
+
             .content-card-list {
                 .splide__slide {
                     background-color: colors.$primaryColor;
@@ -76,6 +77,32 @@
                             width: 66.59px;
                             height: 22.57px;
                         }
+                    }
+                }
+            }
+
+            .card-number {
+                .dot {
+                    background-color: colors.$whiteColor;
+                }
+            }
+
+            .card-action {
+                padding: 20px 27px 21px 27px;
+                background-color: #edf3ff;
+
+                .btn {
+                    padding: 0px;
+                    max-width: 60px;
+                    color: colors.$darkBlueColor;
+                    box-sizing: content-box;
+
+                    .btn-icon {
+                        max-width: 32px;
+                    }
+
+                    .btn-text {
+                        box-sizing: content-box;
                     }
                 }
             }
