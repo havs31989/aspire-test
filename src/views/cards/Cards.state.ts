@@ -48,7 +48,7 @@ export class CardsState extends BaseComponentState {
             const request = new GetMyCardsRequest(100);
             const response = await me.cardsService.getMyCardsList(request);
             if (ObjectHelper.hasApiError(response)) {
-                alert((response as SystemError).message);
+                console.log((response as SystemError).message);
             }
             else {
                 myCards = response as MyCardItem[];
