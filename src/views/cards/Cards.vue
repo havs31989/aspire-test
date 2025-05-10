@@ -36,7 +36,7 @@ export default defineComponent({
       <div class="cards flex flex-col">
         <div class="cards-header flex w-full justify-between items-end">
           <div class="balance">
-            <div class="text-sm pb-[18px]">{{ state.lanuage.text.cards.availableBalance }}</div>
+            <div class="availableBalance-title text-sm pb-[18px]">{{ state.lanuage.text.cards.availableBalance }}</div>
             <div class="balance-value flex justify-center items-center">
               <div class="currency-block flex justify-center items-center rounded-sm text-[13px] font-bold">
                 <span>{{ state.model.currency }}</span>
