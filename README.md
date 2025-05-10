@@ -9,6 +9,7 @@ A Vue 3 application powered by Vite, TypeScript, and the One Frontend Framework.
 - [Build Modes](#build-modes)
 - [Project Structure](#project-structure)
 - [Dependencies](#dependencies)
+- [Testing](#testing)
 - [License](#license)
 
 ## Installation
@@ -69,6 +70,14 @@ npm run lint
 
 Runs ESLint on the project files.
 
+### Run Tests
+
+```bash
+npm run test
+```
+
+Runs the test suite using Vitest and Happy DOM.
+
 ## Build Modes
 
 This project uses Vite's environment mode feature to support multiple builds:
@@ -97,6 +106,18 @@ This project uses Vite's environment mode feature to support multiple builds:
 ### Development
 
 Includes tooling for linting, TypeScript support, Vite plugins, and Sass compilation.
+
+## Testing
+
+The test suite is powered by [Vitest](https://vitest.dev/) and [Happy DOM](https://github.com/capricorn86/happy-dom) for simulating a browser environment in Node.js. Vue component testing is enabled via `@vue/test-utils`.
+
+To run the tests:
+
+```bash
+npm run test
+```
+
+Test files are typically located in the `tests/` directory or placed alongside components using the `.spec.ts` or `.test.ts` naming convention.
 
 ## License
 
