@@ -37,9 +37,7 @@ export class CardsState extends BaseComponentState {
 
     public async onMounted(): Promise<void> {
         const me = this;
-        window.addEventListener('load', function () {
-            me.changeSizeDetect(false);
-        });
+        me.changeSizeDetect(false);
         window.addEventListener('resize', function () {
             me.debounce(me.changeSizeDetect(false), 250);
         });
