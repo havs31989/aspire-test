@@ -44,7 +44,18 @@
         }
     }
 
-    .content {
-        padding: 59px 60px;
+    .top-menu {
+        position: relative;
+        .logo {
+            width: 25.59px;
+            height: 25px;
+            position: absolute;
+            top: 16px;
+            right: 24.41px;
+            background-image: url("/assets/img/Home.svg");
+            background-size: cover;
+            background-position: center;
+            filter: colors.$primaryColorFilter;
+        }
     }
 }

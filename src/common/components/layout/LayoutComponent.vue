@@ -28,24 +28,20 @@ export default defineComponent({
 
 <template>
   <template v-if="state.isReady">
-    <div class="layout flex-1 flex">
-      <div class="left-menu flex flex-col h-full">
+    <div class="layout flex-1 flex flex-col xl:flex-row">
+      <div class="left-menu flex-col h-full hidden xl:flex">
         <div class="logo" alt="menu-app-logo"></div>
         <div class="slogan">
           <span class="text-white">{{ state.lanuage.text.layout.slogan }}</span>
         </div>
         <div class="menu flex-1 w-full">
-          <RouterLink
-            class="menu-item flex justify-start items-center"
-            :class="{ 'active': $props.meta?.pageRouteName == routeNames.Home }" :to="{ name: routeNames.Home }"
-          >
+          <RouterLink class="menu-item flex justify-start items-center"
+            :class="{ 'active': $props.meta?.pageRouteName == routeNames.Home }" :to="{ name: routeNames.Home }">
             <img class="menu-item-icon" src="/assets/img/Home.svg" alt="menu-item-icon">
             <span class="menu-item-title">{{ state.lanuage.text.layout.home }}</span>
           </RouterLink>
-          <RouterLink
-            class="menu-item flex justify-start items-center"
-            :class="{ 'active': $props.meta?.pageRouteName == routeNames.Cards }" :to="{ name: routeNames.Cards }"
-          >
+          <RouterLink class="menu-item flex justify-start items-center"
+            :class="{ 'active': $props.meta?.pageRouteName == routeNames.Cards }" :to="{ name: routeNames.Cards }">
             <img class="menu-item-icon" src="/assets/img/Card.svg" alt="menu-item-icon">
             <span class="menu-item-title">{{ state.lanuage.text.layout.card }}</span>
           </RouterLink>
@@ -63,7 +59,10 @@ export default defineComponent({
           </a>
         </div>
       </div>
-      <div class="content flex-1 flex flex-col">
+      <div class="top-menu flex w-full xl:hidden">
+        <div class="logo" alt="menu-app-logo"></div>
+      </div>
+      <div class="content flex-1 flex flex-col xl:px-[60px] xl:py-[59px]">
         <slot></slot>
       </div>
     </div>
