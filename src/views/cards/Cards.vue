@@ -55,8 +55,8 @@ export default defineComponent({
         </div>
         <div class="cards-content mt-[34px]">
           <div class="tabs tabs-border">
-            <input type="radio" name="cards_tab" class="cards-tab tab p-0"
-              :aria-label="state.lanuage.text.cards.myDebitCards" checked />
+            <input id="myCardTab" type="radio" name="cards_tab" class="cards-tab tab p-0" 
+              :aria-label="state.lanuage.text.cards.myDebitCards" />
             <div class="my-cards tab-content cards-tab-content border shadow rounded-lg">
               <div class="flex">
                 <div class="left-panel w-[414px] flex flex-col">
@@ -271,7 +271,7 @@ export default defineComponent({
                 </div>
               </div>
             </div>
-            <input type="radio" name="cards_tab" class="cards-tab tab p-0"
+            <input id="allCardTab" type="radio" name="cards_tab" class="cards-tab tab p-0" 
               :aria-label="state.lanuage.text.cards.allCompanyCards" />
             <div class="all-cards tab-content cards-tab-content border shadow rounded-lg">
               {{ state.lanuage.text.cards.allCompanyCards }}
@@ -302,7 +302,7 @@ export default defineComponent({
         </div>
         <div class="cards-content mt-[34px] w-full px-[24px]">
           <div class="tabs tabs-border">
-            <input type="radio" name="cards_tab" class="cards-tab tab p-0 text-white"
+            <input id="myCardTabMobile" type="radio" name="cards_tab" class="cards-tab tab p-0 text-white"
               :aria-label="state.lanuage.text.cards.myDebitCards" checked />
             <div class="my-cards tab-content cards-tab-content border rounded-lg">
               <div class="flex">
@@ -377,14 +377,14 @@ export default defineComponent({
                 </div>
               </div>
             </div>
-            <input type="radio" name="cards_tab" class="cards-tab tab p-0 text-white"
+            <input id="allCardTabMobile" type="radio" name="cards_tab" class="cards-tab tab p-0 text-white"
               :aria-label="state.lanuage.text.cards.allCompanyCards" />
             <div class="all-cards tab-content cards-tab-content border shadow rounded-lg">
               {{ state.lanuage.text.cards.allCompanyCards }}
             </div>
           </div>
         </div>
-        <div v-if="state.myActiveCard" class="card-action rounded-t-2xl flex justify-between mt-6">
+        <div v-if="state.myActiveCard" class="card-action rounded-t-2xl flex justify-between mt-">
           <button
             class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
             @click="state.setFreezeCurrentCard()">
