@@ -24,13 +24,21 @@
 
         .menu {
             padding-top: 81px;
+
             .menu-item {
                 margin-bottom: 62px;
                 color: colors.$whiteColor;
+
                 .menu-item-logo {
                     width: 24px;
                     height: 24px;
                 }
+
+                .menu-item-icon {
+                    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7476%) hue-rotate(298deg)
+                        brightness(108%) contrast(98%);
+                }
+
                 .menu-item-title {
                     margin-left: 16px;
                 }
@@ -56,6 +64,37 @@
             background-size: cover;
             background-position: center;
             filter: colors.$primaryColorFilter;
+        }
+    }
+
+    .footer-menu {
+        position: fixed;
+        background-color: colors.$whiteColor;
+        bottom: 0;
+        padding-top: 9px;
+        padding-bottom: 8px;
+        padding-left: 30px;
+        padding-right: 31px;
+
+        .menu-item {
+            .menu-item-icon {
+                filter: brightness(0) saturate(100%) invert(97%) sepia(1%) saturate(143%) hue-rotate(220deg)
+                    brightness(108%) contrast(73%);
+                width: 24px;
+                height: 18.08px;
+            }
+
+            .menu-item-title {
+                margin-top: 2px;
+                font-size: 9px;
+                color: #dddddd;
+            }
+
+            &.active {
+                font-weight: bold;
+                color: colors.$primaryColor;
+                filter: colors.$primaryColorFilter;
+            }
         }
     }
 }

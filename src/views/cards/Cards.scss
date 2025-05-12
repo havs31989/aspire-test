@@ -219,6 +219,7 @@
                                         color: colors.$primaryColor;
                                     }
                                 }
+                                
                                 .card-detail {
                                     position: relative;
                                     border-radius: 8px;
@@ -268,6 +269,42 @@
 
             .btn-text {
                 box-sizing: content-box;
+            }
+        }
+    }
+
+    .card-collapse {
+        background-color: #ffffff;
+        
+        .collapse {
+            background-color: #f5f9ff;
+            border: 1px solid #f5f5f5;
+            width: auto;
+
+            .collapse-title {
+                color: colors.$darkBlueColor;
+                .collapse-title-icon {
+                    .title-icon {
+                        display: none;
+                        &.open-icon {
+                            display: flex;
+                        }
+                    }
+                }
+            }
+
+            &:is([open], :focus:not(.collapse-close)),
+            &:not(.collapse-close):has(> input:is([type="checkbox"], [type="radio"]):checked) {
+                .collapse-title {
+                    .collapse-title-icon {
+                        .title-icon {
+                            display: none;
+                            &.close-icon {
+                                display: flex;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

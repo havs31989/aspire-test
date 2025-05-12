@@ -35,13 +35,17 @@ export default defineComponent({
           <span class="text-white">{{ state.lanuage.text.layout.slogan }}</span>
         </div>
         <div class="menu flex-1 w-full">
-          <RouterLink class="menu-item flex justify-start items-center"
-            :class="{ 'active': $props.meta?.pageRouteName == routeNames.Home }" :to="{ name: routeNames.Home }">
+          <RouterLink
+            class="menu-item flex justify-start items-center"
+            :class="{ 'active': $props.meta?.pageRouteName == routeNames.Home }" :to="{ name: routeNames.Home }"
+          >
             <img class="menu-item-icon" src="/assets/img/Home.svg" alt="menu-item-icon">
             <span class="menu-item-title">{{ state.lanuage.text.layout.home }}</span>
           </RouterLink>
-          <RouterLink class="menu-item flex justify-start items-center"
-            :class="{ 'active': $props.meta?.pageRouteName == routeNames.Cards }" :to="{ name: routeNames.Cards }">
+          <RouterLink
+            class="menu-item flex justify-start items-center"
+            :class="{ 'active': $props.meta?.pageRouteName == routeNames.Cards }" :to="{ name: routeNames.Cards }"
+          >
             <img class="menu-item-icon" src="/assets/img/Card.svg" alt="menu-item-icon">
             <span class="menu-item-title">{{ state.lanuage.text.layout.card }}</span>
           </RouterLink>
@@ -62,8 +66,36 @@ export default defineComponent({
       <div class="top-menu flex w-full xl:hidden">
         <div class="logo" alt="menu-app-logo"></div>
       </div>
-      <div class="content flex-1 flex flex-col xl:px-[60px] xl:py-[59px]">
+      <div class="content flex-1 flex flex-col xl:px-[60px] xl:py-[59px] mb-[50px] xl:mb-0">
         <slot></slot>
+      </div>
+      <div class="footer-menu flex justify-between shadow w-full xl:hidden">
+        <RouterLink
+          class="menu-item flex flex-col justify-start items-center"
+          :class="{ 'active': $props.meta?.pageRouteName == routeNames.Home }" :to="{ name: routeNames.Home }"
+        >
+          <img class="menu-item-icon" src="/assets/img/Home.svg" alt="menu-item-icon">
+          <span class="menu-item-title">{{ state.lanuage.text.layout.home }}</span>
+        </RouterLink>
+        <RouterLink
+          class="menu-item flex flex-col justify-start items-center"
+          :class="{ 'active': $props.meta?.pageRouteName == routeNames.Cards }" :to="{ name: routeNames.Cards }"
+        >
+          <img class="menu-item-icon" src="/assets/img/Card.svg" alt="menu-item-icon">
+          <span class="menu-item-title">{{ state.lanuage.text.layout.card }}</span>
+        </RouterLink>
+        <a class="menu-item flex flex-col justify-start items-center" href="#">
+          <img class="menu-item-icon" src="/assets/img/Payments.svg" alt="menu-item-icon">
+          <span class="menu-item-title">{{ state.lanuage.text.layout.payments }}</span>
+        </a>
+        <a class="menu-item flex flex-col justify-start items-center" href="#">
+          <img class="menu-item-icon" src="/assets/img/Credit.svg" alt="menu-item-icon">
+          <span class="menu-item-title">{{ state.lanuage.text.layout.credit }}</span>
+        </a>
+        <a class="menu-item flex flex-col justify-start items-center" href="#">
+          <img class="menu-item-icon" src="/assets/img/Account.svg" alt="menu-item-icon">
+          <span class="menu-item-title">{{ state.lanuage.text.layout.settings }}</span>
+        </a>
       </div>
     </div>
   </template>
