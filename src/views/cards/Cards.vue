@@ -24,6 +24,7 @@ export default defineComponent({
   },
   async mounted() {
     await this.state.init();
+    await this.state.onMounted();
   },
   methods: {
   }
@@ -55,8 +56,8 @@ export default defineComponent({
         </div>
         <div class="cards-content mt-[34px]">
           <div class="tabs tabs-border">
-            <input id="myCardTab" type="radio" name="cards_tab" class="cards-tab tab p-0" 
-              :aria-label="state.lanuage.text.cards.myDebitCards" />
+            <input id="myCardsTab" type="radio" name="cards_tab" class="cards-tab tab p-0"
+              :aria-label="state.lanuage.text.cards.myDebitCards" @click="state.onTabClick('myCardsTab');" />
             <div class="my-cards tab-content cards-tab-content border shadow rounded-lg">
               <div class="flex">
                 <div class="left-panel w-[414px] flex flex-col">
@@ -271,8 +272,8 @@ export default defineComponent({
                 </div>
               </div>
             </div>
-            <input id="allCardTab" type="radio" name="cards_tab" class="cards-tab tab p-0" 
-              :aria-label="state.lanuage.text.cards.allCompanyCards" />
+            <input id="allCardsTab" type="radio" name="cards_tab" class="cards-tab tab p-0"
+              :aria-label="state.lanuage.text.cards.allCompanyCards" @click="state.onTabClick('allCardsTab');" />
             <div class="all-cards tab-content cards-tab-content border shadow rounded-lg">
               {{ state.lanuage.text.cards.allCompanyCards }}
             </div>
@@ -302,8 +303,8 @@ export default defineComponent({
         </div>
         <div class="cards-content mt-[34px] w-full px-[24px]">
           <div class="tabs tabs-border">
-            <input id="myCardTabMobile" type="radio" name="cards_tab" class="cards-tab tab p-0 text-white"
-              :aria-label="state.lanuage.text.cards.myDebitCards" checked />
+            <input id="myCardsTabMobile" type="radio" name="cards_tab" class="cards-tab tab p-0 text-white"
+              :aria-label="state.lanuage.text.cards.myDebitCards" @click="state.onTabClick('myCardsTabMobile');" />
             <div class="my-cards tab-content cards-tab-content border rounded-lg">
               <div class="flex">
                 <div class="left-panel w-full flex flex-col">
@@ -377,14 +378,14 @@ export default defineComponent({
                 </div>
               </div>
             </div>
-            <input id="allCardTabMobile" type="radio" name="cards_tab" class="cards-tab tab p-0 text-white"
-              :aria-label="state.lanuage.text.cards.allCompanyCards" />
+            <input id="allCardsTabMobile" type="radio" name="cards_tab" class="cards-tab tab p-0 text-white"
+              :aria-label="state.lanuage.text.cards.allCompanyCards" @click="state.onTabClick('allCardsTabMobile');" />
             <div class="all-cards tab-content cards-tab-content border shadow rounded-lg">
               {{ state.lanuage.text.cards.allCompanyCards }}
             </div>
           </div>
         </div>
-        <div v-if="state.myActiveCard" class="card-action rounded-t-2xl flex justify-between mt-">
+        <div v-if="state.myActiveCard" class="card-action rounded-t-2xl flex justify-between mt-6">
           <button
             class="btn btn-ghost h-auto flex flex-col hover:bg-transparent hover:border-transparent hover:shadow-none"
             @click="state.setFreezeCurrentCard()">
@@ -424,6 +425,102 @@ export default defineComponent({
               {{ state.lanuage.text.cards.cancelCard }}
             </span>
           </button>
+        </div>
+        <div v-if="state.myActiveCard" class="card-collapse w-full p-6">
+          <div class="card-details-collapse collapse rounded-lg">
+            <input type="checkbox" />
+            <div class="collapse-title p-6 flex justify-between items-center">
+              <div class="title-with-icon flex items-center">
+                <img class="w-[24px] h-[24px]" src="/assets/img/Group 11889.svg" alt="card-detail-icon" />
+                <span class="ms-3 text-[14px] font-semibold"> {{ state.lanuage.text.cards.cardDetails }}</span>
+              </div>
+              <div class="collapse-title-icon">
+                <img class="open-icon title-icon" src="/assets/img/down-arrow.svg" alt="collapse-open-icon" />
+                <img class="close-icon title-icon" src="/assets/img/down-arrow-1.svg" alt="collapse-close-icon" />
+              </div>
+            </div>
+            <div class="collapse-content p-0 !pb-0 bg-white">
+              <div class="transaction-content p-6">
+                {{ state.lanuage.text.cards.cardDetails }}
+              </div>
+            </div>
+          </div>
+          <div class="transaction-collapse collapse rounded-lg mt-6">
+            <input type="checkbox" checked />
+            <div class="collapse-title p-6 flex justify-between items-center">
+              <div class="title-with-icon flex items-center">
+                <img class="w-[24px] h-[24px]" src="/assets/img/Group 11889-1.svg" alt="card-detail-icon" />
+                <span class="ms-3 text-[14px] font-semibold"> {{ state.lanuage.text.cards.recentTransactions }}</span>
+              </div>
+              <div class="collapse-title-icon">
+                <img class="open-icon title-icon" src="/assets/img/down-arrow.svg" alt="collapse-open-icon" />
+                <img class="close-icon title-icon" src="/assets/img/down-arrow-1.svg" alt="collapse-close-icon" />
+              </div>
+            </div>
+            <div class="collapse-content p-0 !pb-0 bg-white">
+              <div class="transaction-content">
+                <div class="transaction-detail-list p-6">
+                  <div v-for="(item, index) in state.myActiveCard.transactions" :key="item.id"
+                    class="transaction-detail-item flex flex-col">
+                    <div class="transaction-detail-item-info flex flex-row justify-between items-center">
+                      <div class="flex-1 flex justify-between items-center">
+                        <div class="w-[48px] h-[48px] bg-[#009DFF1A] rounded-3xl flex justify-center items-center">
+                          <img class="w-[16px]" :src="item.getIcon()" alt="transction-icon" />
+                        </div>
+                        <div class="flex-1 flex flex-col ms-3">
+                          <h3 class="transaction-title text-sm font-semibold">{{ item.title }}</h3>
+                          <span class="transaction-time text-[13px] text-[#AAAAAA]">
+                            {{ new Date(item.date).toLocaleDateString('en-SG', {
+                              year: "numeric", month: "long", day: "numeric"
+                            }) }}
+                          </span>
+                        </div>
+                        <div class="flex">
+                          <span v-if="!item.debit" class="text-sm font-bold text-[#222222]">- {{ item.currency
+                          }}
+                            {{ item.value }}
+                          </span>
+                          <span v-if="item.debit" class="text-sm font-bold text-[#01D167]">+ {{ item.currency }}
+                            {{ item.value }}
+                          </span>
+                        </div>
+                      </div>
+                      <button
+                        class="btn btn-ghost h-full p-0 ms-[10.3px] showcard-button hover:bg-transparent hover:border-transparent hover:shadow-none">
+                        <img class="w-[6.5px] h-[12px]" src="/assets/img/next.svg" alt="next" />
+                      </button>
+                    </div>
+                    <div class="transaction-detail-item-option flex justify-center mt-3">
+                      <button
+                        class="btn btn-ghost h-auto p-0 showcard-button hover:bg-transparent hover:border-transparent hover:shadow-none">
+                        <span class="w-[24px] h-[20px] bg-[#325BAF] rounded-lg flex justify-center items-center">
+                          <img class="w-[10px] h-[7.68px]" src="/assets/img/business-and-finance.svg" alt="card-icon" />
+                        </span>
+                        <span v-if="item.debit" class="text-[12px] font-semibold text-[#325BAF] ms-2">
+                          {{ state.lanuage.text.cards.refundOnDebitCard }}
+                        </span>
+                        <span v-if="!item.debit" class="text-[12px] font-semibold text-[#325BAF] ms-2">
+                          {{ state.lanuage.text.cards.chargedToDebitCard }}
+                        </span>
+                      </button>
+                    </div>
+                    <div v-if="index != state.myActiveCard.transactions.length - 1"
+                      class="line border-b border-[#F5F5F5] my-4">
+                    </div>
+                  </div>
+                </div>
+                <div v-if="state.myActiveCard.transactions.length > 0"
+                  class="transaction-view-all bg-[#EDFFF5] border-[#DDFFEC] py-4 text-center leading-[18px]">
+                  <button
+                    class="btn btn-ghost p-0 showcard-button h-auto hover:bg-transparent hover:border-transparent hover:shadow-none">
+                    <span class="text-[13px] font-semibold text-[#01D167]">
+                      {{ state.lanuage.text.cards.viewAllCardTransactions }}
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <dialog id="addNewCardModal" class="modal">

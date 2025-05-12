@@ -63,6 +63,7 @@ export class CardViewModel {
         }
     }
 }
+
 export class CardViewTransactionModel {
     public id: string = '';
     public title: string = '';

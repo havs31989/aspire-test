@@ -20,29 +20,96 @@ export class CardsState extends BaseComponentState {
 
     public model: CardsModel = new CardsModel();
     public myActiveCard?: CardViewModel;
-    public myCardsSplide: AnyType;
+    public myCardsSplide?: Splide;
+    public myCardsSplideMobile?: Splide;
     public createModel: CardCreateModel = new CardCreateModel();
+    public currentTab?: string;
+    public myCardTabId: string = 'myCardsTab';
+    public myCardsTabMobileId: string = 'myCardsTabMobile';
+    public allCardTabId: string = 'allCardsTab';
+    public allCardsTabMobileId: string = 'allCardsTabMobile';
 
     public async init(): Promise<void> {
         const me = this;
         await me.getMyCards();
         me.isReady = true;
-        const intervalRender = setInterval(() => {
-            const myCardSplideEl = document.getElementById('myCardSplide');
-            const myCardSplideMobileEl = document.getElementById('myCardSplideMobile');
-            if (myCardSplideEl || myCardSplideMobileEl) {
-                clearInterval(intervalRender);
-                const myCardsSplide = new Splide('#myCardSplide');
-                myCardsSplide.on('active', (Slide) => { this.onMyActiveCard(Slide); })
-                myCardsSplide.mount();
-                const myCardsSplideMobile = new Splide('#myCardSplideMobile');
-                myCardsSplideMobile.on('active', (Slide) => { this.onMyActiveCard(Slide); })
-                myCardsSplideMobile.mount();
-            }
-        }, 100);
     }
 
     public async onMounted(): Promise<void> {
+        const me = this;
+        window.addEventListener('load', function () {
+            me.changeSizeDetect(false);
+        });
+        window.addEventListener('resize', function () {
+            me.debounce(me.changeSizeDetect(false), 250);
+        });
+    }
+
+    public async onTabClick(tabId: string): Promise<void> {
+        const me = this;
+        if (me.currentTab != tabId) {
+            me.currentTab = tabId;
+            if (me.currentTab == me.myCardTabId || me.currentTab == me.myCardsTabMobileId) {
+                if (me.model.myCards.length == 0) {
+                    me.myActiveCard = undefined;
+                }
+            }
+            else {
+                me.myActiveCard = undefined;
+            }
+            me.changeSizeDetect();
+        }
+    }
+
+    public debounce(func: AnyType, delay: number): AnyType {
+        let timer = 0;
+        return function () {
+            clearTimeout(timer);
+            timer = setTimeout(func, delay);
+        };
+    }
+
+    public changeSizeDetect(clickTab: boolean = true): void {
+        const me = this;
+        if (window.innerWidth < 1366) {
+            if (!me.currentTab || (clickTab && me.currentTab == me.myCardsTabMobileId) || (!clickTab && me.currentTab != me.myCardsTabMobileId)) {
+                const intervalRender = setInterval(() => {
+                    const myCardSplideMobileEl = document.getElementById('myCardSplideMobile');
+                    if (myCardSplideMobileEl) {
+                        clearInterval(intervalRender);
+                        if (me.myCardsSplideMobile) {
+                            me.myCardsSplideMobile.destroy();
+                        }
+                        me.myCardsSplideMobile = new Splide('#myCardSplideMobile');
+                        me.myCardsSplideMobile.on('active', (Slide: SlideComponent) => { this.onMyActiveCard(Slide); });
+                        me.myCardsSplideMobile.mount();
+                        myCardSplideMobileEl.classList.add('is-overflow');
+                        if (!clickTab) {
+                            document.getElementById(me.myCardsTabMobileId)?.click();
+                        }
+                    }
+                }, 100);
+            }
+        } else {
+            if (!me.currentTab || (clickTab && me.currentTab == me.myCardTabId) || (!clickTab && me.currentTab != me.myCardTabId)) {
+                const intervalRender = setInterval(() => {
+                    const myCardSplideEl = document.getElementById('myCardSplide');
+                    if (myCardSplideEl) {
+                        clearInterval(intervalRender);
+                        if (me.myCardsSplide) {
+                            me.myCardsSplide.destroy();
+                        }
+                        me.myCardsSplide = new Splide('#myCardSplide');
+                        me.myCardsSplide.on('active', (Slide: SlideComponent) => { this.onMyActiveCard(Slide); })
+                        me.myCardsSplide.mount();
+                        myCardSplideEl.classList.add('is-overflow');
+                        if (!clickTab) {
+                            document.getElementById(me.myCardTabId)?.click();
+                        }
+                    }
+                }, 100);
+            }
+        }
     }
 
     public async getMyCards(): Promise<void> {
