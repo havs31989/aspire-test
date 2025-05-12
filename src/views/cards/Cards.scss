@@ -19,6 +19,7 @@
             }
         }
     }
+
     .cards-content {
         .cards-tab {
             font-family: "Avenir Next", "Open Sans", sans-serif;
@@ -142,6 +143,131 @@
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+.cards-mobile {
+    max-width: 100vw;
+    .cards-header {
+        .balance {
+            .balance-value {
+                .currency-block {
+                    width: 40px;
+                    height: 22px;
+                    background-color: colors.$primaryColor;
+                    color: colors.$whiteColor;
+                }
+            }
+        }
+        .new-card {
+            button {
+                color: #23cefd;
+                filter: brightness(0) saturate(100%) invert(63%) sepia(76%) saturate(1178%) hue-rotate(157deg)
+                    brightness(102%) contrast(98%);
+            }
+        }
+    }
+
+    .cards-content {
+        .cards-tab {
+            font-family: "Open Sans", sans-serif;
+            font-size: 13px;
+            opacity: 0.5;
+            height: 18px;
+            line-height: 18px;
+            margin-right: 33px;
+
+            &::before {
+                left: 0;
+                width: 100%;
+                border-radius: 6px;
+                border-top: 2px;
+                height: 2px;
+                bottom: -4.5px;
+            }
+            &:checked {
+                font-weight: bold;
+                opacity: 1;
+                &::before {
+                    background-color: #23cefd;
+                }
+            }
+        }
+
+        .cards-tab-content {
+            &.my-cards {
+                .left-panel {
+                    .content-card-list {
+                        .splide__slide {
+                            padding-top: 24.5px;
+                            .card-information {
+                                position: relative;
+
+                                .showcard-button {
+                                    height: 40px;
+                                    padding-left: 10px;
+                                    padding-right: 10px;
+                                    padding-top: 5px;
+                                    position: absolute;
+                                    top: -28px;
+                                    right: 0;
+                                    z-index: 1;
+
+                                    .showcard-text {
+                                        color: colors.$primaryColor;
+                                    }
+                                }
+                                .card-detail {
+                                    position: relative;
+                                    border-radius: 8px;
+                                    background-color: colors.$primaryColor;
+                                    max-width: calc(100vw - 48px);
+                                    margin-top: 26px;
+                                    z-index: 2;
+
+                                    .aspire-logo {
+                                        width: 83.52px;
+                                        height: 23.7px;
+                                        filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(868%)
+                                            hue-rotate(19deg) brightness(110%) contrast(101%);
+                                    }
+                                    .card-logo {
+                                        width: 66.59px;
+                                        height: 22.57px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .card-number {
+                        .dot {
+                            background-color: colors.$whiteColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .card-action {
+        padding: 20px 27px 21px 27px;
+        background-color: #edf3ff;
+
+        .btn {
+            padding: 0px;
+            max-width: 60px;
+            color: colors.$darkBlueColor;
+            box-sizing: content-box;
+
+            .btn-icon {
+                max-width: 32px;
+            }
+
+            .btn-text {
+                box-sizing: content-box;
             }
         }
     }

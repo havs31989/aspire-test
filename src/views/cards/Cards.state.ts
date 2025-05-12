@@ -29,11 +29,15 @@ export class CardsState extends BaseComponentState {
         me.isReady = true;
         const intervalRender = setInterval(() => {
             const myCardSplideEl = document.getElementById('myCardSplide');
-            if (myCardSplideEl) {
+            const myCardSplideMobileEl = document.getElementById('myCardSplideMobile');
+            if (myCardSplideEl || myCardSplideMobileEl) {
                 clearInterval(intervalRender);
-                const myCardsSplide = new Splide('.splide');
+                const myCardsSplide = new Splide('#myCardSplide');
                 myCardsSplide.on('active', (Slide) => { this.onMyActiveCard(Slide); })
                 myCardsSplide.mount();
+                const myCardsSplideMobile = new Splide('#myCardSplideMobile');
+                myCardsSplideMobile.on('active', (Slide) => { this.onMyActiveCard(Slide); })
+                myCardsSplideMobile.mount();
             }
         }, 100);
     }

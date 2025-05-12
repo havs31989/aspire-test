@@ -62,7 +62,7 @@ export default defineComponent({
       <div class="top-menu flex w-full xl:hidden">
         <div class="logo" alt="menu-app-logo"></div>
       </div>
-      <div class="content flex-1 flex flex-col px-[24px] py-[31px] xl:px-[60px] xl:py-[59px]">
+      <div class="content flex-1 flex flex-col xl:px-[60px] xl:py-[59px]">
         <slot></slot>
       </div>
     </div>
